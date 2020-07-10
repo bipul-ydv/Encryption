@@ -3,10 +3,7 @@ package com.example.Encryption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GetAuthTokenController {
@@ -35,5 +32,15 @@ public class GetAuthTokenController {
         boolean isValid = validateToken.tokenValidation(username, password);
         return new ResponseEntity(isValid,HttpStatus.FOUND);
     }
+
+    @PutMapping(value = "/getToken")
+    ResponseEntity refreshToken(@RequestParam(value = "token")String uuidToken ){
+        String validToken = validateToken.tokenRefresh(uuidToken);
+        if(!isValid){
+            // throw new Exception("Token Already Generated");
+        }
+        return new ResponseEntity(validToken, HttpStatus.CREATED);
+    }
+
 
 }
