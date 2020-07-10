@@ -36,7 +36,7 @@ public class GetAuthTokenController {
     @PutMapping(value = "/getToken")
     ResponseEntity refreshToken(@RequestParam(value = "token")String uuidToken ){
         String validToken = validateToken.tokenRefresh(uuidToken);
-        if(!isValid){
+        if(validToken != null){
             // throw new Exception("Token Already Generated");
         }
         return new ResponseEntity(validToken, HttpStatus.CREATED);

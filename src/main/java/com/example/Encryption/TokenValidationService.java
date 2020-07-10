@@ -30,6 +30,6 @@ public class TokenValidationService {
             flag = false;
         }
         //insert a nerw token and return the same
-        return UUID.randomUUID();
+        return UUID.randomUUID().toString();
     }
 }
